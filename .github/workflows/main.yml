@@ -50,7 +50,7 @@ jobs:
             mkdir -p ~/test
           scp: |
             './dist/*' => ~/test/dist/
-            './docker*' => ~/test/
+            './docke*' => ~/test/
             ./server/* => ~/test/server/
           last_ssh: |
             cd ~/test
