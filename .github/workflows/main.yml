@@ -46,13 +46,11 @@ jobs:
           pass: ${{ secrets.MY_PASS }} # 服务器密码
           connect_timeout: 10s
           first_ssh: |
-            set +e
-            rm -rf ~/test
-            mkdir -p ~/test
-            docker stop keysama-container
-            docker rm -f keysama-container
-            docker rmi -f nginx:keysama
-            set -e
+            rm -rf ~/test || echo no test
+            mkdir -p ~/test || echo nkdir test failed
+            docker stop keysama-container || echo no keysama-container
+            docker rm -f keysama-container || echo cant remove keysama-container 
+            docker rmi -f nginx:keysama || echo cant remove images nginx:keysama
           scp: |
             './dist/*' => ~/test/dist/
             './docke*' => ~/test/
