@@ -48,6 +48,9 @@ jobs:
           first_ssh: |
             rm -rf ~/test
             mkdir -p ~/test
+            docker stop keysama-container
+            docker rm -f keysama-container
+            docker rmi -f nginx:keysama
           scp: |
             './dist/*' => ~/test/dist/
             './docke*' => ~/test/
