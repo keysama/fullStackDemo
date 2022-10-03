@@ -45,6 +45,9 @@ jobs:
           user: ${{ secrets.MY_USER }} # 服务器用户名
           pass: ${{ secrets.MY_PASS }} # 服务器密码
           connect_timeout: 10s
+          first_ssh: |
+            rm -rf ~/test
+            mkdir -p ~/test
           scp: |
             './dist/*' => ~/test/dist/
             './docker*' => ~/test/
