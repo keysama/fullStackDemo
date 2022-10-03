@@ -46,11 +46,13 @@ jobs:
           pass: ${{ secrets.MY_PASS }} # 服务器密码
           connect_timeout: 10s
           first_ssh: |
+            set +e
             rm -rf ~/test
             mkdir -p ~/test
             docker stop keysama-container
             docker rm -f keysama-container
             docker rmi -f nginx:keysama
+            set -e
           scp: |
             './dist/*' => ~/test/dist/
             './docke*' => ~/test/
