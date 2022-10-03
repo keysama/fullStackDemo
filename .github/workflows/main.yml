@@ -54,5 +54,5 @@ jobs:
             ./server/* => ~/test/server/
           last_ssh: |
             cd ~/test
-            docker build --tag nginx:keysama --file ./dockerFile .
+            docker build --tag nginx:keysama --file ~/test/dockerFile .
             docker-compose up -d
