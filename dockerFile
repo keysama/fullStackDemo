@@ -1,6 +1,6 @@
 FROM nginx
 COPY ./server/default.conf /etc/nginx/conf.d/default.conf
-COPY ./dist /usr/nginx/html
+COPY ./dist /usr/share/nginx/html
 COPY ./server/cert /usr/local/nginx/cert
 
 EXPOSE 80 443
