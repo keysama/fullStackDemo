@@ -1,0 +1,15 @@
+{
+  "name": "fullStackDemo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "taskr"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "taskr": "^1.1.0"
+  }
+}
