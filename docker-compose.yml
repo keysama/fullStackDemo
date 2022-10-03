@@ -1,0 +1,8 @@
+# yaml 配置
+version: '3'
+services:
+  web:
+    image: "nginx:keysama"
+    ports:
+     - "80:80"
+     - "443:443"

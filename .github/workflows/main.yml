@@ -39,23 +39,18 @@ jobs:
           
      # 同步server目录下的后端代码到服务器（目标路径：/home/nginx/myBlogServer）
       - name: upload
-        uses: cross-the-world/scp-pipeline@master
+        uses: cross-the-world/ssh-scp-ssh-pipelines@latest
         with:
           host: ${{ secrets.MY_HOST }} # 服务器IP（需要在GitHub上自行配置对应的secret）
           user: ${{ secrets.MY_USER }} # 服务器用户名
           pass: ${{ secrets.MY_PASS }} # 服务器密码
           connect_timeout: 10s
-          local: './dist/*' # 源路径（工作流）
-          remote: ~/test # 目标路径（服务器）
-      
-      # 在服务器端执行相关指令
-      - name: Executing remote ssh commands
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.MY_HOST }} # 服务器IP（需要在GitHub上自行配置对应的secret）
-          username: ${{ secrets.MY_USER }} # 服务器用户名
-          password: ${{ secrets.MY_PASS }} # 服务器密码
-          script: |
-            cd ~/test # 进入服务器中的端工程所在的目录
+          scp: |
+            './dist/*' => ~/test/dist/
+            ./DockerFile => ~/test/DockerFile
+            ./server/* => ~/test/server/
+            ./docker-compose.yml => ~/test/docker-compose.yml
+          last_ssh: |
+            cd ~/test
             docker build --tag nginx:keysama --file ./DockerFile .
-            docker compose
+            docker-compose up -d
