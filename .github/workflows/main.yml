@@ -47,10 +47,9 @@ jobs:
           connect_timeout: 10s
           scp: |
             './dist/*' => ~/test/dist/
-            ./DockerFile => ~/test/
+            './docker*' => ~/test/
             ./server/* => ~/test/server/
-            ./docker-compose.yml => ~/test/
           last_ssh: |
             cd ~/test
-            docker build --tag nginx:keysama --file ./DockerFile .
+            docker build --tag nginx:keysama --file ./dockerFile .
             docker-compose up -d
